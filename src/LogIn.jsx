@@ -1,5 +1,4 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -8,18 +7,17 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-//import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-//import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import './LogStyle.css';
 import { withStyles } from '@material-ui/core/styles';
-import Logo from './Lifesavers Blood bag.png';
+import Logo from './Lg.png';
+import { Link as LinkRouter} from "react-router-dom";
 
 function Copyright() {
     return (
-        <Typography variant="body2" color="#C5C5C5" align="center">
+        <Typography variant="body2" color="#C5C5C5" align="center" style ={{ color: "#C5C5C5"}}>
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
                 DnD's Website
@@ -92,7 +90,7 @@ export default function SignIn() {
                 </WhiteTextTypography>
                 <form className={classes.form} noValidate>
                     <TextField
-                        variant="outlined"
+                        variant="filled"
                         margin="normal"
                         required
                         fullWidth
@@ -105,7 +103,7 @@ export default function SignIn() {
                         style={{borderRadius: 15}}
                     />
                     <TextField
-                        variant="outlined"
+                        variant="filled"
                         margin="normal"
                         required
                         fullWidth
@@ -133,9 +131,11 @@ export default function SignIn() {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="#" variant="body2" color="inherit">
+                            <LinkRouter to="/signup">
+                                <Link href="#" variant="body2" color="#FFFFFF" style ={{ color: "#FFF"}}>
                                 {"Don't have an account? Sign Up"}
-                            </Link>
+                                </Link>
+                            </LinkRouter>
                         </Grid>
                     </Grid>
                 </form>
