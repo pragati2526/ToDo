@@ -16,7 +16,7 @@ import Container from '@material-ui/core/Container';
 import './LogStyle.css';
 import { withStyles } from '@material-ui/core/styles';
 import Logo from './Lifesavers Blood bag.png';
-
+import { Link as LinkRouter} from "react-router-dom";
 function Copyright() {
     return (
         <Typography variant="body2" color="#C5C5C5" align="center">
@@ -122,10 +122,11 @@ export default function SignIn() {
                         control={<Checkbox value="remember" color="primary" style ={{ color: "#FFF"}} />}
                         label="Remember me"
                     />
-                    
+                    <LinkRouter to="/createboard">
                     <ColorButton variant="contained" color="primary" className={classes.submit} fullWidth style={{borderRadius: 20}}>
                         Sign in
                     </ColorButton>
+                    </LinkRouter>
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2" color="inherit">
@@ -133,9 +134,12 @@ export default function SignIn() {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="#" variant="body2" color="inherit">
-                                {"Don't have an account? Sign Up"}
+                            <LinkRouter to="/signup">
+
+                            <Link href="#" variant="body2" color="#FFFFFF" style ={{ color: "#FFF"}}>
+                                {"Already have an account? Sign in"}
                             </Link>
+                            </LinkRouter>
                         </Grid>
                     </Grid>
                 </form>
