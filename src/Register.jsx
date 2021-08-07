@@ -151,10 +151,11 @@ export default function SignUp() {
                         control={<Checkbox value="remember" color="primary" style ={{ color: "#FFF"}} />}
                         label="Remember me"
                     />
-                    
+                    <LinkRouter to="/createboard">
                     <ColorButton variant="contained" color="primary" className={classes.submit} fullWidth style={{borderRadius: 20}}>
                         Sign UP
                     </ColorButton>
+                    </LinkRouter>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
                         <LinkRouter to="/signin">
