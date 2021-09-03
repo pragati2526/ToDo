@@ -1,0 +1,16 @@
+.todo {
+    cursor: pointer;
+  }
+.strike {
+    text-decoration: line-through;
+  }
+
+.box {
+  font-size:20px;
+  background-color: #F1F2FC;
+  border-radius: 10px;
+  margin:10px;
+  height:60px;
+  padding:10px;
+  text-align: center;
+}

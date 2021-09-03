@@ -119,11 +119,12 @@ export default function SignIn() {
                         control={<Checkbox value="remember" color="primary" style ={{ color: "#FFF"}} />}
                         label="Remember me"
                     />
-                    <LinkRouter to="/createboard">
+                    <LinkRouter to="/createboard" style={{ textDecoration: 'none' }}>
                     <ColorButton variant="contained" color="primary" className={classes.submit} fullWidth style={{borderRadius: 20}}>
                         Sign in
                     </ColorButton>
                     </LinkRouter>
+                   
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2" color="inherit">

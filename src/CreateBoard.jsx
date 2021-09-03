@@ -1,25 +1,20 @@
 import React from 'react';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-//import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-//import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import './LogStyle.css';
 import { withStyles } from '@material-ui/core/styles';
-import Logo from './Lifesavers Blood bag.png';
-import { Link as LinkRouter} from "react-router-dom";
-import { BorderLeft } from '@material-ui/icons';
+import Logo from './Lg.png';
+import { Link } from "react-router-dom";
 import SimpleCard from './SimpleCard';
+import { useState } from 'react';
+import NavBar from './NavBar';
+import Modal from 'react-modal';
+import './createBoard.css';
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -46,6 +41,20 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
 }));
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: "abcd",
+  },
+};
+
+
 const ColorButton = withStyles((theme) => ({
     root: {
         color: '#FFFFFF', 
@@ -74,13 +83,28 @@ const WhiteTextTypography = withStyles({
         color: "#FFFFFF"
     }
 })(Typography);
+Modal.setAppElement('#root');
 
-export default function CreateBoard() {
+export default function CreateBoard(history) {
     const classes = useStyles();
+    const [toggle, setToggle] = useState(false);
 
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+//   function afterOpenModal() {
+//     subtitle.style.color = '#abbb';
+//   }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
     return (
         <>
-        
+        <NavBar />
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             
@@ -102,14 +126,27 @@ export default function CreateBoard() {
                     <ColorButton variant="contained" color="primary" className={classes.submit} fullWidth style={{borderRadius: 14}}>
                         BOARD 3
                     </ColorButton>
-                    <AddButton variant="contained" color="primary" className={classes.submit} fullWidth style={{borderRadius: 14}}>
+                    <AddButton variant="contained" color="primary" className={classes.submit} fullWidth style={{borderRadius: 14}} onClick={openModal}>
                         <AddCircleIcon />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CREATE BOARD 
                     </AddButton>
                     
                 </form>
             </div>
             <Box mt={5}>
+                <Modal
+        isOpen={modalIsOpen}
+        // onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        overlayClassName={"overlay"}
+      >
               <SimpleCard />
+              <Link to="/kanban" style={{ textDecoration: 'none' }}>
+              <ColorButton variant="contained" color="primary" className={classes.submit} fullWidth style={{borderRadius: 14, height: "30px"}} onClick={closeModal}>
+                        SET BACKGROUND
+                    </ColorButton>
+                </Link>
+              </Modal>
             </Box>
         </Container>
         </>
