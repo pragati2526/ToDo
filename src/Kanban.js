@@ -1,16 +1,21 @@
 import React from 'react'
 import Title from './Title.js';
-import {Container,Row,Col} from 'react-bootstrap';
 import './ToDoStyle.css';
+import { DndProvider } from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
+import ButtonAppBar from "./NavbarBoard";
+import Footer from "./Footer";
 
 export default function Kanban() {
     return (
-        <Container fluid style={{backgroundColor:"#4D4D5C",padding:"30px"}} >
-            <Row className='mx-auto'>
-                <Col xs={12}  md={4}className=''><Title title="ToDo"/></Col>
-                <Col xs={12}  md={4} className='justify-content-center'><Title title="Doing"/></Col>
-                <Col xs={12}  md={4} className='justify-content-center'><Title title="Done"/></Col>
-            </Row>
-        </Container>
+        <>
+        <ButtonAppBar/>
+        <div style={{backgroundColor:"#4D4D5C",marginTop:"30px",paddingBottom:"130px"}}>
+        <DndProvider backend={HTML5Backend}>
+        <Title/>
+        </DndProvider>
+        </div>
+        <Footer/>
+        </>
     )
 }
