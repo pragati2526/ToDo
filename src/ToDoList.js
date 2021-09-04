@@ -10,7 +10,6 @@ const ToDoList = ({toDoList}) => {
                    <ToDo todo={todo}/>
                )
            })}
-           {/* <button style={{margin: '20px'}} onClick={handleFilter}>Clear Completed</button> */}
        </div>
    );
 };

@@ -1,38 +1,68 @@
 import React,{ useState } from 'react'
-import data from './data.json';
-import ToDoList from "./ToDoList";
+import ToDo from "./ToDo";
 import ToDoForm from './ToDoForm';
+import DropWrapper from "./DropWrapper";
+import Col from "./Col";
+import { data, statuses } from "./data/index.js";
+import './ToDoStyle.css';
 
-export default function Title({title}) {
-    const [ toDoList, setToDoList ] = useState(data);
-    // const handleToggle = (id) => {
-    //     let mapped = toDoList.map(task => {
-    //       return task.id === id ? { ...task, complete: !task.complete } : { ...task};
-    //     });
-    //     setToDoList(mapped);
-    //   }
+const Title = () => {
+  const [items, setItems] = useState(data);
+  const addTask = (userInput ) => {
+          let copy = [...items];
+          copy = [...copy, { 
+              id: items.length + 1,
+              status: "ToDo",
+              title: userInput}];
+          setItems(copy);
+        }
 
-    // const handleFilter = () => {
-    //   let filtered = toDoList.filter(task => {
-    //     return !task.complete;
-    //   });
-    //   setToDoList(filtered);
-    // }
-    const addTask = (userInput ) => {
-      let copy = [...toDoList];
-      copy = [...copy, { id: toDoList.length + 1, task: userInput, complete: false }];
-      setToDoList(copy);
-    }
-    
+  const onDrop = (item, monitor, status) => {
+      const mapping = statuses.find(si => si.status === status);
 
-    return (
-        <>
-        <h1 style={{color:"white",textAlign:"center"}}>{title}</h1>
-        <div style={{backgroundColor:"white",borderRadius: "21px",padding:"20px"}}>
-            <ToDoList toDoList={toDoList}/>
-            {/* <ToDoList toDoList={toDoList} handleToggle={handleToggle}/> */}
-            <ToDoForm addTask={addTask}/>
+      setItems(prevState => {
+          const newItems = prevState
+              .filter(i => i.id !== item.id)
+              .concat({ ...item, status, icon: mapping.icon });
+          return [ ...newItems ];
+      });
+  };
+
+  const moveItem = (dragIndex, hoverIndex) => {
+      const item = items[dragIndex];
+      setItems(prevState => {
+          const newItems = prevState.filter((i, idx) => idx !== dragIndex);
+          newItems.splice(hoverIndex, 0, item);
+          return  [ ...newItems ];
+      });
+  };
+
+  return (
+      <>
+       <div className="row1">
+            {statuses.map(s => {
+                return (
+                    <>
+                    <div key={s.status} className={"col-wrapper"}>
+                    <h2 className={"col-header"}>{s.status.toUpperCase()}</h2>
+                        <DropWrapper onDrop={onDrop} status={s.status}>
+                            <Col>
+                                {items
+                                    .filter(i => i.status === s.status)
+                                    .map((i, idx) => <ToDo key={i.id} item={i} index={idx} moveItem={moveItem} status={s} />)
+                                }
+                            </Col>
+                        </DropWrapper>
+                    </div>
+                    </>
+                );
+            })}
         </div>
-        </>
-    )
-}
+        <div className={"row1"}>
+        <ToDoForm addTask={addTask}/>
+        </div>
+          </>
+   
+  )};
+
+export default Title;

@@ -8,13 +8,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import './LogStyle.css';
 import { withStyles } from '@material-ui/core/styles';
-import Logo from './Lg.png';
 import { Link } from "react-router-dom";
 import SimpleCard from './SimpleCard';
 import { useState } from 'react';
-import NavBar from './NavBar';
+import NavbarBoard from './NavbarBoard';
 import Modal from 'react-modal';
 import './createBoard.css';
+import FooterCb from './FooterCb';
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
     form: {
         color: "#FFFFFF",
-        width: '100%', // Fix IE 11 issue.
+        width: '100%', 
         marginTop: theme.spacing(1),
     },
     submit: {
@@ -94,18 +94,13 @@ export default function CreateBoard(history) {
   function openModal() {
     setIsOpen(true);
   }
-
-//   function afterOpenModal() {
-//     subtitle.style.color = '#abbb';
-//   }
-
   function closeModal() {
     setIsOpen(false);
   }
     return (
         <>
-        <NavBar />
-        <Container component="main" maxWidth="xs">
+        <NavbarBoard />
+        <Container component="main" maxWidth="xs" style={{paddingBottom: "60px"}}>
             <CssBaseline />
             
             <div className={classes.paper}>
@@ -135,7 +130,6 @@ export default function CreateBoard(history) {
             <Box mt={5}>
                 <Modal
         isOpen={modalIsOpen}
-        // onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         overlayClassName={"overlay"}
@@ -149,6 +143,7 @@ export default function CreateBoard(history) {
               </Modal>
             </Box>
         </Container>
+        <FooterCb />
         </>
     );
 }

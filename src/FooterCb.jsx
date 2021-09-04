@@ -31,13 +31,12 @@ const LogOutButton = withStyles((theme) => ({
 }))(Button);
 
 
-export default function ButtonAppBar(props) {
+export default function FooterCb(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{background: '#4D4D5C'}}>
         <Toolbar>
-            <Link to="/createboard" style={{ textDecoration: 'none' }}><LogOutButton lg={2} style={{padding: "10px"}}>Your Boards</LogOutButton></Link>
           <Typography variant="h6" className={classes.title} align="center">
             {props.AppTitle}
           </Typography>

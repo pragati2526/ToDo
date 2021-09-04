@@ -11,6 +11,8 @@
     "bootstrap": "^5.1.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.6",
+    "react-dnd": "^14.0.3",
+    "react-dnd-html5-backend": "^14.0.1",
     "react-dom": "^17.0.2",
     "react-modal": "^3.14.3",
     "react-router-dom": "^5.2.0",
